@@ -194,6 +194,9 @@
             },
         }
 
+        var priceHistory
+        var currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
+
         document.addEventListener('DOMContentLoaded', function() {
             initForm()
 
@@ -202,14 +205,14 @@
 
             updateCurrency()
         });
-
-        var priceHistory
-        var currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
-
+        
         const initForm = function() {
             const urlParams = new URLSearchParams(window.location.search);
 
-            currencyTicker = supportedCurrencies[urlParams.get('currency')] ? urlParams.get('currency') : 'ZAR'
+            if (supportedCurrencies[urlParams.get('currency')]) {
+                currencyTicker = urlParams.get('currency') 
+            }
+
             document.getElementById('dca-amount').value = Number(urlParams.get('dca-amount')) || 10
             document.getElementById('frequency').value = Number(urlParams.get('frequency')) || 1
             document.getElementById('months-ago').value = Number(urlParams.get('months-ago')) || 12
