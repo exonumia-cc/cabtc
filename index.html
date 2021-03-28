@@ -202,6 +202,9 @@
             const urlParams = new URLSearchParams(window.location.search);
 
             document.getElementById('dca-amount').value = Number(urlParams.get('dca-amount')) || 10
+            document.getElementById('frequency').value = Number(urlParams.get('frequency')) || 1
+            document.getElementById('months-ago').value = Number(urlParams.get('months-ago')) || 12
+            document.getElementById('months-duration').value = Number(urlParams.get('months-duration')) || 12
         }
 
         const updateCalculation = function () {
