@@ -166,31 +166,38 @@
         const supportedCurrencies = {
             'ZAR': {
                 ticker: "ZAR",
-                name: "South African Rand"
+                name: "South African Rand",
+                symbol: 'R'
             },
             'NAD': {
                 ticker: "ZAR",
-                name: "Namibian Dollar"
+                name: "Namibian Dollar",
+                symbol: 'N$'
             },
             'SZL': {
                 ticker: "ZAR",
-                name: "Swazi Lilangeni"
+                name: "Swazi Lilangeni",
+                symbol: 'E'
             },
             'ZMW': {
                 ticker: "ZMW",
-                name: "Zambian Kwacha"
+                name: "Zambian Kwacha",
+                symbol: 'ZK'
             },
             'LSL': {
                 ticker: "ZAR",
-                name: "Lesotho loti"
+                name: "Lesotho loti",
+                symbol: 'M'
             },
             'NGN': {
                 ticker: "NGN",
-                name: "Nigerian Naira"
+                name: "Nigerian Naira",
+                symbol: '₦'
             },
             'UGX': {
                 ticker: "UGX",
-                name: "Ugandan Shilling"
+                name: "Ugandan Shilling",
+                symbol: 'USh'
             },
         }
 
@@ -275,9 +282,9 @@
 
             currentValue = Number(Number(btcAccumulated*priceHistory.o[priceHistory.o.length-1]).toFixed(2))
 
-            const totalFiatSavedString = `${fiatSaved.toLocaleString("za").replace(",",".")} ${currencyTicker}`
+            const totalFiatSavedString = `${supportedCurrencies[currencyTicker].symbol}${fiatSaved.toLocaleString("za").replace(",",".")}`
             const totalBitcoinAccumulatedString = `${Number(btcAccumulated.toFixed(8)).toLocaleString("za").replace(",",".")} BTC`
-            const currentFiatTradeValueString = `${currentValue.toLocaleString("za").replace(",",".")} ${currencyTicker}`
+            const currentFiatTradeValueString = `${supportedCurrencies[currencyTicker].symbol}${currentValue.toLocaleString("za").replace(",",".")}`
             const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString().replace(",",".")}x`
             const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString().replace(",",".")}%`
 
@@ -287,7 +294,7 @@
             document.getElementById("multiple-change").innerHTML = multipleChangeString
             document.getElementById("percent-change").innerHTML = percentChanceString
             
-            document.getElementById("summary-1").innerHTML = `Saving ${dcaAmount} ${currencyTicker} of Bitcoin every day from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} would have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
+            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin every day from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} would have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
             document.getElementById("summary-2").innerHTML = document.getElementById("summary-1").innerHTML
             
         }
