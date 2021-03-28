@@ -68,82 +68,85 @@
             </div>
         </div>
         
-    <div class="divider"></div>
+        <div class="divider"></div>
 
-    <div class="container">
-        <p id="summary-2" class="flow-text"></p>
-        <div class="center">
-            <a class="btn blue" href="javascript:copySummary()">Copy Summary</a>
-        </div>
-        <div class="row"></div>
-    </div>
-    
-    <div class="divider"></div>
-
-    <div class="container">
-        <div class="row">
-
-        </div>
-        <form id="form" class="row" action="get">
-            <div class="input-field col s12 m6">
-                <label>Amount to Save</label>
-                <input id="dca-amount" type="number" class="validate" value="10" min="10" step="1" name="dca-amount" oninput="updateCalculation()">
-            </div>
-            <div class="input-field col s12 m6">
-                <select id="frequency" name="frequency" onchange="updateCalculation()">
-                    <option value="1">Daily</option>
-                    <option value="7">Weekly</option>
-                    <option value="30">Monthly</option>
-                    <option value="365">Yearly</option>
-                </select>
-                <label for="frequency">Frequency of saving</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <select id="months-ago" name="months-ago" onchange="updateCalculation()">
-                    <option value="12">1 Year Ago</option>
-                    <option value="24">2 Years Ago</option>
-                    <option value="36">3 Years Ago</option>
-                    <option value="48">4 Years Ago</option>
-                    <option value="60">5 Years Ago</option>
-                    <option value="72">6 Years Ago</option>
-                    <option value="84">7 Years Ago</option>
-                    <option value="96">8 Years Ago</option>
-                    <option value="108">9 Years Ago</option>
-                </select>
-                <label for="months-ago">Starting Date</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <select id="months-duration" name="months-duration" onchange="updateCalculation()"> 
-                    <option value="12">1 Year</option>
-                    <option value="24">2 Years</option>
-                    <option value="36">3 Years</option>
-                    <option value="48">4 Years</option>
-                    <option value="60">5 Years</option>
-                    <option value="72">6 Years</option>
-                    <option value="84">7 Years</option>
-                    <option value="96">8 Years</option>
-                    <option value="108">9 Years</option>
-                </select>
-                <label for="months-duration">Accumulate For</label>
-            </div>
-
+        <div class="container">
+            <p id="summary-2" class="flow-text"></p>
             <div class="center">
-                <a class="btn blue" href="javascript:copyURL()">Copy URL</a>
+                <a class="btn blue" href="javascript:copySummary()">Copy Summary</a>
             </div>
-        </form>
-    </div>
+            <div class="row"></div>
+        </div>
+        
+        <div class="divider"></div>
 
-    
+        <div class="container">
+            <div class="row">
+
+            </div>
+            <form id="form" class="row" action="get">
+                <div class="input-field col s12 m4">
+                    <select id="currency" name="currency" onchange="updateCurrency()">
+                    </select>
+                    <label for="frequency">Frequency of saving</label>
+                </div>
+                <div class="input-field col s12 m4">
+                    <label>Amount to Save</label>
+                    <input id="dca-amount" type="number" class="validate" value="10" min="10" step="1" name="dca-amount" oninput="updateCalculation()">
+                </div>
+                <div class="input-field col s12 m4">
+                    <select id="frequency" name="frequency" onchange="updateCalculation()">
+                        <option value="1">Daily</option>
+                        <option value="7">Weekly</option>
+                        <option value="30">Monthly</option>
+                        <option value="365">Yearly</option>
+                    </select>
+                    <label for="frequency">Frequency of saving</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <select id="months-ago" name="months-ago" onchange="updateCalculation()">
+                        <option value="12">1 Year Ago</option>
+                        <option value="24">2 Years Ago</option>
+                        <option value="36">3 Years Ago</option>
+                        <option value="48">4 Years Ago</option>
+                        <option value="60">5 Years Ago</option>
+                        <option value="72">6 Years Ago</option>
+                        <option value="84">7 Years Ago</option>
+                        <option value="96">8 Years Ago</option>
+                        <option value="108">9 Years Ago</option>
+                    </select>
+                    <label for="months-ago">Starting Date</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <select id="months-duration" name="months-duration" onchange="updateCalculation()"> 
+                        <option value="12">1 Year</option>
+                        <option value="24">2 Years</option>
+                        <option value="36">3 Years</option>
+                        <option value="48">4 Years</option>
+                        <option value="60">5 Years</option>
+                        <option value="72">6 Years</option>
+                        <option value="84">7 Years</option>
+                        <option value="96">8 Years</option>
+                        <option value="108">9 Years</option>
+                    </select>
+                    <label for="months-duration">Accumulate For</label>
+                </div>
+
+                <div class="center">
+                    <a class="btn blue" href="javascript:copyURL()">Copy URL</a>
+                </div>
+            </form>
+        </div>
     </div>
-    
 
     <footer class="page-footer grey">
         <div class="container">
             <div class="row">
                 <div class="col s12">
                     <h5 class="white-text">Cost Averaging Bitcoin</h5>
+                    <p>Price information taking from the Luno exchange.</p>
                     <ul>
-                        <li><a class="white-text" href="https://github.com/exonumia-cc">Github</a></li>
+                        <li><a class="white-text" href="https://github.com/exonumia-cc/cabtc">Github</a></li>
                         <li><a class="white-text" href="https://exonumia.cc">Exonumia</a></li>
                       </ul>
                 </div>
@@ -166,21 +169,69 @@
                 name: "South African Rand"
             },
             'NAD': {
-                ticker: "NAD",
+                ticker: "ZAR",
                 name: "Namibian Dollar"
             },
-            'USD': {
-                ticker: "USD",
-                name: "Namibian Dollar"
+            'SZL': {
+                ticker: "ZAR",
+                name: "Swazi Lilangeni"
+            },
+            'ZMW': {
+                ticker: "ZMW",
+                name: "Zambian Kwacha"
+            },
+            'LSL': {
+                ticker: "ZAR",
+                name: "Lesotho loti"
+            },
+            'NGN': {
+                ticker: "NGN",
+                name: "Nigerian Naira"
+            },
+            'UGX': {
+                ticker: "UGX",
+                name: "Ugandan Shilling"
             },
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            initForm()
+
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, {});
 
-            initForm()
+            updateCurrency()
+        });
 
+        var priceHistory
+        var currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
+
+        const initForm = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            currencyTicker = supportedCurrencies[urlParams.get('currency')] ? urlParams.get('currency') : 'ZAR'
+            document.getElementById('dca-amount').value = Number(urlParams.get('dca-amount')) || 10
+            document.getElementById('frequency').value = Number(urlParams.get('frequency')) || 1
+            document.getElementById('months-ago').value = Number(urlParams.get('months-ago')) || 12
+            document.getElementById('months-duration').value = Number(urlParams.get('months-duration')) || 12
+
+            var currencySelect = document.getElementById("currency");
+
+            Object.keys(supportedCurrencies).sort().forEach(key => {
+                var option = document.createElement("option");
+                option.text = supportedCurrencies[key].name;
+                option.value = key
+                option.selected = key == currencyTicker
+                currencySelect.add(option);
+            })
+        }
+
+        const updateCurrency = function () {
+            var currencySelect = document.getElementById("currency");
+            currencyTicker = currencySelect.value || 'ZAR'
+            const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
             document.getElementById('currency-display-name').innerHTML = supportedCurrencies[currencyTicker].name
+
             fetch(priceHistoryURL, {
                 "credentials": "omit",
                 "method": "GET",
@@ -194,23 +245,8 @@
                     updateCalculation()
                 }
             })
-        });
-
-        var priceHistory
-        const currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
-        const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
-
-        
-
-        const initForm = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-
-            document.getElementById('dca-amount').value = Number(urlParams.get('dca-amount')) || 10
-            document.getElementById('frequency').value = Number(urlParams.get('frequency')) || 1
-            document.getElementById('months-ago').value = Number(urlParams.get('months-ago')) || 12
-            document.getElementById('months-duration').value = Number(urlParams.get('months-duration')) || 12
         }
-
+        
         const updateCalculation = function () {
             const dcaAmount = Number(document.getElementById('dca-amount').value) || 10
             const frequency = Number(document.getElementById('frequency').value) || 1
@@ -257,7 +293,6 @@
             const url = getURL()
             navigator.clipboard.writeText(`${document.getElementById("summary-1").textContent} ${url}` )
         }
-
 
         const copyURL = function () {
             const url = getURL()
