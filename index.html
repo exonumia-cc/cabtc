@@ -164,7 +164,7 @@
         });
 
         var priceHistory
-        const currencyTicker = window.location.hostname.substring(0,3).toUpperCase() || 'ZAR'
+        const currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
         const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
 
         document.getElementById('currency-display-name').innerHTML = supportedCurrencies[currencyTicker].name
