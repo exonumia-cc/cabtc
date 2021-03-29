@@ -105,6 +105,10 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <select id="months-ago" name="months-ago" onchange="updateCalculation()">
+                        <option value="1">1 Month</option>
+                        <option value="2">2 Months</option>
+                        <option value="3">3 Months</option>
+                        <option value="6">6 Months</option>
                         <option value="12">1 Year Ago</option>
                         <option value="24">2 Years Ago</option>
                         <option value="36">3 Years Ago</option>
@@ -119,6 +123,10 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <select id="months-duration" name="months-duration" onchange="updateCalculation()"> 
+                        <option value="1">1 Month</option>
+                        <option value="2">2 Months</option>
+                        <option value="3">3 Months</option>
+                        <option value="6">6 Months</option>
                         <option value="12">1 Year</option>
                         <option value="24">2 Years</option>
                         <option value="36">3 Years</option>
@@ -283,7 +291,8 @@
             currentValue = Number(Number(btcAccumulated*priceHistory.o[priceHistory.o.length-1]).toFixed(2))
 
             const totalFiatSavedString = `${supportedCurrencies[currencyTicker].symbol}${fiatSaved.toLocaleString("za").replace(",",".")}`
-            const totalBitcoinAccumulatedString = `${Number(btcAccumulated.toFixed(8)).toLocaleString("za").replace(",",".")} BTC`
+            // const totalBitcoinAccumulatedString = `${Number(btcAccumulated.toFixed(8)).toLocaleString("za").replace(",",".")} BTC`
+            const totalBitcoinAccumulatedString = `${btcAccumulated.toFixed(8)} BTC`
             const currentFiatTradeValueString = `${supportedCurrencies[currencyTicker].symbol}${currentValue.toLocaleString("za").replace(",",".")}`
             const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString().replace(",",".")}x`
             const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString().replace(",",".")}%`
@@ -294,7 +303,7 @@
             document.getElementById("multiple-change").innerHTML = multipleChangeString
             document.getElementById("percent-change").innerHTML = percentChanceString
             
-            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin every day from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} would have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
+            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin ${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} would have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
             document.getElementById("summary-2").innerHTML = document.getElementById("summary-1").innerHTML
             
         }
