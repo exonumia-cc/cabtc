@@ -290,12 +290,12 @@
 
             currentValue = Number(Number(btcAccumulated*priceHistory.o[priceHistory.o.length-1]).toFixed(2))
 
-            const totalFiatSavedString = `${supportedCurrencies[currencyTicker].symbol}${fiatSaved.toLocaleString("za").replace(",",".")}`
+            const totalFiatSavedString = `${supportedCurrencies[currencyTicker].symbol}${fiatSaved.toLocaleString("en-ZA").replace(",",".")}`
             // const totalBitcoinAccumulatedString = `${Number(btcAccumulated.toFixed(8)).toLocaleString("za").replace(",",".")} BTC`
             const totalBitcoinAccumulatedString = `${btcAccumulated.toFixed(8)} BTC`
-            const currentFiatTradeValueString = `${supportedCurrencies[currencyTicker].symbol}${currentValue.toLocaleString("za").replace(",",".")}`
-            const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString("za").replace(",",".")}x`
-            const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString("za").replace(",",".")}%`
+            const currentFiatTradeValueString = `${supportedCurrencies[currencyTicker].symbol}${currentValue.toLocaleString("en-ZA").replace(",",".")}`
+            const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString("en-ZA").replace(",",".")}x`
+            const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString("en-ZA").replace(",",".")}%`
 
             document.getElementById("total-saved").innerHTML = totalFiatSavedString
             document.getElementById("btc-accumulated").innerHTML = totalBitcoinAccumulatedString
