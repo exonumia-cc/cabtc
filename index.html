@@ -303,7 +303,7 @@
             document.getElementById("multiple-change").innerHTML = multipleChangeString
             document.getElementById("percent-change").innerHTML = percentChanceString
             
-            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin ${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} would have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
+            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin ${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} might have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
             document.getElementById("summary-2").innerHTML = document.getElementById("summary-1").innerHTML
             
         }
