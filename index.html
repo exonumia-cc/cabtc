@@ -8,6 +8,20 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
+    <style>
+        .tabs .tab a:hover, .tabs .tab a.active {
+            background-color: transparent;
+            color: black;
+        }
+
+        .tabs .tab a {
+            color: black;
+        }
+
+        .tabs .indicator {
+            background-color: black;
+        }
+    </style>
 </head>
 <body>
     <div class="center">
@@ -82,68 +96,102 @@
 
         <div class="container">
             <div class="row">
-
             </div>
-            <form id="form" class="row" action="get">
-                <div class="input-field col s12 m4">
-                    <select id="currency" name="currency" onchange="updateCurrency()">
-                    </select>
-                    <label for="frequency">Frequency of saving</label>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a href="#recurring-section">Recurring</a></li>
+                        <li class="tab col s6"><a href="#once-off-section">Once Off</a></li>
+                    </ul>
                 </div>
-                <div class="input-field col s12 m4">
-                    <label>Amount to Save</label>
-                    <input id="dca-amount" type="number" class="validate" value="10" min="10" step="1" name="dca-amount" oninput="updateCalculation()">
+                <div id="recurring-section" class="col s12">
+                    <div class="row">
+                    </div>
+                    <form id="form" class="row" action="get">
+                        <div class="input-field col s12 m4">
+                            <select id="currency" class="currency-select" name="currency" onchange="updateCurrency()">
+                            </select>
+                            <label for="currency">Currency</label>
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <label>Amount to Save</label>
+                            <input id="dca-amount" type="number" class="validate" value="10" min="10" step="1" name="dca-amount" oninput="updateRecurringCalculation()">
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <select id="frequency" name="frequency" onchange="updateRecurringCalculation()">
+                                <option value="1">Daily</option>
+                                <option value="7">Weekly</option>
+                                <option value="30">Monthly</option>
+                                <option value="365">Yearly</option>
+                            </select>
+                            <label for="frequency">Frequency of saving</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select id="months-ago" name="months-ago" onchange="updateRecurringCalculation()">
+                                <option value="1">1 Month</option>
+                                <option value="2">2 Months</option>
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="12">1 Year Ago</option>
+                                <option value="24">2 Years Ago</option>
+                                <option value="36">3 Years Ago</option>
+                                <option value="48">4 Years Ago</option>
+                                <option value="60">5 Years Ago</option>
+                                <option value="72">6 Years Ago</option>
+                                <option value="84">7 Years Ago</option>
+                                <option value="96">8 Years Ago</option>
+                                <option value="108">9 Years Ago</option>
+                            </select>
+                            <label for="months-ago">Starting Date</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select id="months-duration" name="months-duration" onchange="updateRecurringCalculation()"> 
+                                <option value="1">1 Month</option>
+                                <option value="2">2 Months</option>
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="12">1 Year</option>
+                                <option value="24">2 Years</option>
+                                <option value="36">3 Years</option>
+                                <option value="48">4 Years</option>
+                                <option value="60">5 Years</option>
+                                <option value="72">6 Years</option>
+                                <option value="84">7 Years</option>
+                                <option value="96">8 Years</option>
+                                <option value="108">9 Years</option>
+                            </select>
+                            <label for="months-duration">Accumulate For</label>
+                        </div>
+        
+                        <div class="center">
+                            <a class="btn blue" href="javascript:copyURL('form')">Copy URL</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-field col s12 m4">
-                    <select id="frequency" name="frequency" onchange="updateCalculation()">
-                        <option value="1">Daily</option>
-                        <option value="7">Weekly</option>
-                        <option value="30">Monthly</option>
-                        <option value="365">Yearly</option>
-                    </select>
-                    <label for="frequency">Frequency of saving</label>
+                <div id="once-off-section" class="col s12">
+                    <div class="row">
+                    </div>
+                    <form id="once-off-form" class="row" action="get">
+                        <input type="hidden" name="frequency" value="0">
+                        <div class="input-field col s12 m4">
+                            <select id="once-off-currency" class="currency-select" name="currency" onchange="updateCurrency()">
+                            </select>
+                            <label for="once-off-currency">Currency</label>
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <label>Amount to Save</label>
+                            <input id="once-off-amount" type="number" class="validate" value="10" min="10" step="1" name="once-off-amount" oninput="updateOnceOffCalculation()">
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <input id="starting-date" name="starting-date" type="text" class="datepicker" placeholder="Date of Purchase">
+                        </div>
+                        <div class="center">
+                            <a class="btn blue" href="javascript:copyURL('once-off-form')">Copy URL</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-field col s12 m6">
-                    <select id="months-ago" name="months-ago" onchange="updateCalculation()">
-                        <option value="1">1 Month</option>
-                        <option value="2">2 Months</option>
-                        <option value="3">3 Months</option>
-                        <option value="6">6 Months</option>
-                        <option value="12">1 Year Ago</option>
-                        <option value="24">2 Years Ago</option>
-                        <option value="36">3 Years Ago</option>
-                        <option value="48">4 Years Ago</option>
-                        <option value="60">5 Years Ago</option>
-                        <option value="72">6 Years Ago</option>
-                        <option value="84">7 Years Ago</option>
-                        <option value="96">8 Years Ago</option>
-                        <option value="108">9 Years Ago</option>
-                    </select>
-                    <label for="months-ago">Starting Date</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <select id="months-duration" name="months-duration" onchange="updateCalculation()"> 
-                        <option value="1">1 Month</option>
-                        <option value="2">2 Months</option>
-                        <option value="3">3 Months</option>
-                        <option value="6">6 Months</option>
-                        <option value="12">1 Year</option>
-                        <option value="24">2 Years</option>
-                        <option value="36">3 Years</option>
-                        <option value="48">4 Years</option>
-                        <option value="60">5 Years</option>
-                        <option value="72">6 Years</option>
-                        <option value="84">7 Years</option>
-                        <option value="96">8 Years</option>
-                        <option value="108">9 Years</option>
-                    </select>
-                    <label for="months-duration">Accumulate For</label>
-                </div>
-
-                <div class="center">
-                    <a class="btn blue" href="javascript:copyURL()">Copy URL</a>
-                </div>
-            </form>
+            </div>
+            
         </div>
     </div>
 
@@ -169,8 +217,6 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        
-
         const supportedCurrencies = {
             'ZAR': {
                 ticker: "ZAR",
@@ -210,7 +256,10 @@
         }
 
         var priceHistory
+        var frequency
         var currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
+        const urlParams = new URLSearchParams(window.location.search);
+
 
         document.addEventListener('DOMContentLoaded', function() {
             initForm()
@@ -218,33 +267,73 @@
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, {});
 
+            var tabs = document.querySelectorAll('.tabs');
+            var tabInstances = M.Tabs.init(tabs, {
+                onShow: function () {
+                    if (priceHistory && tabInstances[0].index == 1) {
+                        updateOnceOffCalculation()
+                    } else if (priceHistory) {
+                        updateRecurringCalculation()
+                    }
+                }
+            });
+
+            if (urlParams.get('frequency') == 0) {
+                frequency = 0
+                tabInstances[0].select('once-off-section')
+            }
+
+            var datePicker = document.querySelectorAll('.datepicker');
+
+            var purchaseDate = new Date()
+            var urlParamsStartingDate = new Date(urlParams.get('starting-date'))
+            if (isNaN(urlParamsStartingDate.getTime())) {
+                purchaseDate.setMonth(purchaseDate.getMonth() - 12)
+            } else {
+                purchaseDate = new Date(urlParams.get('starting-date'))
+            }
+            
+            var dataPickerInstances = M.Datepicker.init(datePicker, {
+                autoClose: true,
+                defaultDate: purchaseDate,
+                setDefaultDate: true,
+                minDate: new Date(1365811200000),
+                onSelect: updateOnceOffCalculation
+            });
+
             updateCurrency()
         });
         
         const initForm = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-
+            
             if (supportedCurrencies[urlParams.get('currency')]) {
                 currencyTicker = urlParams.get('currency') 
             }
 
+            // Init recurring params
             document.getElementById('dca-amount').value = Number(urlParams.get('dca-amount')) || 10
             document.getElementById('frequency').value = Number(urlParams.get('frequency')) || 1
             document.getElementById('months-ago').value = Number(urlParams.get('months-ago')) || 12
             document.getElementById('months-duration').value = Number(urlParams.get('months-duration')) || 12
 
-            var currencySelect = document.getElementById("currency");
+            // Init once off params
+            document.getElementById('once-off-amount').value = Number(urlParams.get('once-off-amount')) || 10
 
-            Object.keys(supportedCurrencies).sort().forEach(key => {
-                var option = document.createElement("option");
-                option.text = supportedCurrencies[key].name;
-                option.value = key
-                option.selected = key == currencyTicker
-                currencySelect.add(option);
-            })
+            var currencySelects = document.querySelectorAll(".currency-select");
+
+            currencySelects.forEach(currencySelect => {
+                Object.keys(supportedCurrencies).sort().forEach(key => {
+                    var option = document.createElement("option");
+                    option.text = supportedCurrencies[key].name;
+                    option.value = key
+                    option.selected = key == currencyTicker
+                    currencySelect.add(option);
+                })
+            })   
         }
 
         const updateCurrency = function () {
+
             var currencySelect = document.getElementById("currency");
             currencyTicker = currencySelect.value || 'ZAR'
             const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
@@ -260,14 +349,30 @@
                 if (freshPriceHistory.s == "ok") {
                     priceHistory = freshPriceHistory
 
-                    updateCalculation()
+                    if (frequency == 0) {
+                        updateOnceOffCalculation()
+                    } else {
+                        updateRecurringCalculation()
+                    }
                 }
             })
         }
+
+        const updateOnceOffCalculation = function (updatedDate) {
+            const dcaAmount = Number(document.getElementById('once-off-amount').value) || 10
+            frequency = 0
+
+            var startingDate = updatedDate || new Date(document.getElementById('starting-date').value) || new Date()
+
+            var endingDate = new Date(startingDate)
+            endingDate.setDate(endingDate.getDate() + 1)
+
+            calculateBTCAccumalated(dcaAmount, startingDate, endingDate)
+        }
         
-        const updateCalculation = function () {
+        const updateRecurringCalculation = function () {
             const dcaAmount = Number(document.getElementById('dca-amount').value) || 10
-            const frequency = Number(document.getElementById('frequency').value) || 1
+            frequency = Number(document.getElementById('frequency').value) || 1
 
             const startingMonth = Number(document.getElementById('months-ago').value) || 12
             var startingDate = new Date()
@@ -277,14 +382,18 @@
             var endingDate = new Date(startingDate)
             endingDate.setMonth(endingDate.getMonth() + endingMonth)
 
+            calculateBTCAccumalated(dcaAmount, startingDate, endingDate)
+        }
+
+        const calculateBTCAccumalated = function (recurringAmount, startingDate, endingDate) {
             var fiatSaved = 0
             var btcAccumulated = 0
 
             priceHistory.o.forEach((priceAtOpen, index) => {
                 const priceDate = new Date(priceHistory.t[index] * 1000)
-                if (index%frequency == 0 && priceDate > startingDate && priceDate < endingDate) {
-                    fiatSaved += dcaAmount
-                    btcAccumulated += dcaAmount/priceAtOpen
+                if ((frequency == 0 || index%frequency == 0) && priceDate > startingDate && priceDate < endingDate) {
+                    fiatSaved += recurringAmount
+                    btcAccumulated += recurringAmount/priceAtOpen
                 }
             });
 
@@ -297,20 +406,21 @@
             const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString()}x`
             const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString()}%`
 
+            const frequencyString = frequency == 0 ? ` on the ${startingDate.toLocaleDateString()}` : `${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()}`
+
             document.getElementById("total-saved").innerHTML = totalFiatSavedString
             document.getElementById("btc-accumulated").innerHTML = totalBitcoinAccumulatedString
             document.getElementById("current-fiat-value").innerHTML = currentFiatTradeValueString
             document.getElementById("multiple-change").innerHTML = multipleChangeString
             document.getElementById("percent-change").innerHTML = percentChanceString
             
-            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${dcaAmount} of Bitcoin ${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()} might have got you ${totalBitcoinAccumulatedString}.\n\nTurning ${totalFiatSavedString} into ${currentFiatTradeValueString} (${percentChanceString})`
-            document.getElementById("summary-2").innerHTML = document.getElementById("summary-1").innerHTML
-            
+            document.getElementById("summary-1").innerHTML = `Saving ${supportedCurrencies[currencyTicker].symbol}${recurringAmount} in Bitcoin ${frequencyString} might have got you ${totalBitcoinAccumulatedString}.\n\nToday that ${totalFiatSavedString} would be worth ${currentFiatTradeValueString} (${percentChanceString})`
+            document.getElementById("summary-2").innerHTML = document.getElementById("summary-1").innerHTML     
         }
 
         const copySummary = function () {
             const url = getURL()
-            navigator.clipboard.writeText(`${document.getElementById("summary-1").textContent} ${url}` )
+            navigator.clipboard.writeText(`${document.getElementById("summary-1").textContent}\n\n${url}` )
             M.toast({html: 'copied'})
         }
 
@@ -321,7 +431,7 @@
         }
 
         const getURL = function () {
-            const form = document.getElementById("form")
+            const form = document.getElementById(frequency == 0 ? 'once-off-form' : 'form')
             const searchData = new URLSearchParams(new FormData(form))
 
             const url = `${window.location.protocol}//${window.location.hostname}${window.location.pathname}?${searchData.toString()}`
