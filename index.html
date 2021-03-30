@@ -287,10 +287,10 @@
 
             var purchaseDate = new Date()
             var urlParamsStartingDate = new Date(urlParams.get('starting-date'))
-            if (isNaN(urlParamsStartingDate.getTime())) {
-                purchaseDate.setMonth(purchaseDate.getMonth() - 12)
-            } else {
+            if (urlParams.get('starting-date') && !isNaN(urlParamsStartingDate.getTime())) {
                 purchaseDate = new Date(urlParams.get('starting-date'))
+            } else {
+                purchaseDate.setMonth(purchaseDate.getMonth() - 12)
             }
             
             var dataPickerInstances = M.Datepicker.init(datePicker, {
