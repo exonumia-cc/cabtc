@@ -334,10 +334,22 @@
 
         const updateCurrency = function () {
 
-            var currencySelect = document.getElementById("currency");
+            var currencySelect = document.getElementById(frequency == 0 ? "once-off-currency" : "currency");
             currencyTicker = currencySelect.value || 'ZAR'
             const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
             document.getElementById('currency-display-name').innerHTML = supportedCurrencies[currencyTicker].name
+
+            var currencySelects = document.querySelectorAll(".currency-select");
+
+            currencySelects.forEach(currencySelect => {
+                for (const i of Array(currencySelect.options.length).keys()) {
+                    const option = currencySelect.options[i]
+                    if (option.value == currencyTicker) {
+                        // currencySelect.value = option.value
+                        currencySelect.selectedIndex = i
+                    }
+                }
+            }) 
 
             fetch(priceHistoryURL, {
                 "credentials": "omit",
