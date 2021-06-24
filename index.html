@@ -295,11 +295,16 @@
                 purchaseDate.setMonth(purchaseDate.getMonth() - 12)
             }
             
+            const minDate = new Date(1365811200000)
+            const maxDate = new Date()
+
             var dataPickerInstances = M.Datepicker.init(datePicker, {
                 autoClose: true,
                 defaultDate: purchaseDate,
                 setDefaultDate: true,
-                minDate: new Date(1365811200000),
+                yearRange: [minDate.getFullYear(), maxDate.getFullYear()],
+                minDate: minDate,
+                maxDate: maxDate,
                 onSelect: updateOnceOffCalculation
             });
 
