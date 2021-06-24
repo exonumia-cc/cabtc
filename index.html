@@ -416,7 +416,7 @@
             const totalBitcoinAccumulatedString = `${btcAccumulated.toFixed(8)} BTC`
             const currentFiatTradeValueString = `${supportedCurrencies[currencyTicker].symbol}${currentValue.toLocaleString()}`
             const multipleChangeString = `${Number(currentValue/fiatSaved).toLocaleString()}x`
-            const percentChanceString = `${Number(currentValue/fiatSaved*100).toLocaleString()}%`
+            const percentChanceString = `${Number(100-(currentValue/fiatSaved*100)).toLocaleString()}%`
 
             const frequencyString = frequency == 0 ? ` on the ${startingDate.toLocaleDateString()}` : `${document.getElementById('frequency').selectedOptions[0].text.toLowerCase()} from ${startingDate.toLocaleDateString()} until ${endingDate.toLocaleDateString()}`
 
