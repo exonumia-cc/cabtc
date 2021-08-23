@@ -111,7 +111,7 @@
                     </div>
                     <form id="form" class="row" action="get">
                         <div class="input-field col s12 m4">
-                            <select id="currency" class="currency-select" name="currency" onchange="updateCurrency()">
+                            <select id="currency browser-default" class="currency-select" name="currency" onchange="updateCurrency()">
                             </select>
                             <label for="currency">Currency</label>
                         </div>
@@ -120,7 +120,7 @@
                             <input id="dca-amount" type="number" class="validate" value="10" min="10" step="1" name="dca-amount" oninput="updateRecurringCalculation()">
                         </div>
                         <div class="input-field col s12 m4">
-                            <select id="frequency" name="frequency" onchange="updateRecurringCalculation()">
+                            <select id="frequency" class="browser-default" name="frequency" onchange="updateRecurringCalculation()">
                                 <option value="1">Daily</option>
                                 <option value="7">Weekly</option>
                                 <option value="30">Monthly</option>
@@ -129,7 +129,7 @@
                             <label for="frequency">Frequency of saving</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <select id="months-ago" name="months-ago" onchange="updateRecurringCalculation()">
+                            <select class="browser-default" id="months-ago" name="months-ago" onchange="updateRecurringCalculation()">
                                 <option value="1">1 Month</option>
                                 <option value="2">2 Months</option>
                                 <option value="3">3 Months</option>
@@ -147,7 +147,7 @@
                             <label for="months-ago">Starting Date</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <select id="months-duration" name="months-duration" onchange="updateRecurringCalculation()"> 
+                            <select class="browser-default" id="months-duration" name="months-duration" onchange="updateRecurringCalculation()"> 
                                 <option value="1">1 Month</option>
                                 <option value="2">2 Months</option>
                                 <option value="3">3 Months</option>
@@ -176,7 +176,7 @@
                     <form id="once-off-form" class="row" action="get">
                         <input type="hidden" name="frequency" value="0">
                         <div class="input-field col s12 m4">
-                            <select id="once-off-currency" class="currency-select" name="currency" onchange="updateCurrency()">
+                            <select id="once-off-currency" class="currency-select browser-default" name="currency" onchange="updateCurrency()">
                             </select>
                             <label for="once-off-currency">Currency</label>
                         </div>
