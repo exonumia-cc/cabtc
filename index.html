@@ -152,9 +152,9 @@
                                 <option value="48">4 Years Ago</option>
                                 <option value="60">5 Years Ago</option>
                                 <option value="72">6 Years Ago</option>
-                                <option value="84">7 Years Ago</option>
+                                <!-- <option value="84">7 Years Ago</option>
                                 <option value="96">8 Years Ago</option>
-                                <option value="108">9 Years Ago</option>
+                                <option value="108">9 Years Ago</option> -->
                             </select>
                             
                         </div>
@@ -171,9 +171,12 @@
                                 <option value="48">4 Years</option>
                                 <option value="60">5 Years</option>
                                 <option value="72">6 Years</option>
-                                <option value="84">7 Years</option>
+                                <!-- <option value="84">7 Years</option>
                                 <option value="96">8 Years</option>
                                 <option value="108">9 Years</option>
+                                <option value="120">10 Years</option>
+                                <option value="132">11 Years</option>
+                                <option value="144">11 Years</option> -->
                             </select>
                             
                         </div>
@@ -274,6 +277,10 @@
 
         var priceHistory
         var frequency
+
+        const endDateQueryParam = Math.floor(new Date().getTime()/1000);
+        const startDateQueryParam = endDateQueryParam - 172713600;
+        
         var currencyTicker = supportedCurrencies[window.location.hostname.substring(0,3).toUpperCase()] ? window.location.hostname.substring(0,3).toUpperCase() : 'ZAR'
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -310,7 +317,7 @@
                 purchaseDate.setMonth(purchaseDate.getMonth() - 12)
             }
             
-            const minDate = new Date(1365811200000)
+            const minDate = new Date(startDateQueryParam*1000)
             const maxDate = new Date()
 
             var dataPickerInstances = M.Datepicker.init(datePicker, {
@@ -358,7 +365,9 @@
 
             var currencySelect = document.getElementById(frequency == 0 ? "once-off-currency" : "currency");
             currencyTicker = currencySelect.value || 'ZAR'
-            const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=1365811200&to=${Math.floor(new Date().getTime()/1000)}`
+
+            
+            const priceHistoryURL = `https://ajax.luno.com/ajax/1/udf/history?symbol=XBT${supportedCurrencies[currencyTicker].ticker}&resolution=1D&from=${startDateQueryParam}&to=${endDateQueryParam}`
             document.getElementById('currency-display-name').innerHTML = supportedCurrencies[currencyTicker].name
 
             var currencySelects = document.querySelectorAll(".currency-select");
@@ -372,6 +381,8 @@
                     }
                 }
             }) 
+
+            const supportedStartDate = new Date(startDateQueryParam*1000);
 
             fetch(priceHistoryURL, {
                 "credentials": "omit",
